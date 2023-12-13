@@ -26,6 +26,7 @@ type RunItem struct {
 	Mounts  []struct {
 		Type   string `json:"type,omitempty" yaml:"type"`
 		ID     string `json:"id,omitempty" yaml:"id"`
+		Source string `json:"source,omitempty" yaml:"source"`
 		Target string `json:"target,omitempty" yaml:"target"`
 	} `json:"mounts,omitempty" yaml:"mounts"`
 }
@@ -87,6 +88,7 @@ func (r *RunItem) UnmarshalYAML(unmarshal func(interface{}) error) error {
 			Mounts  []struct {
 				Type   string `yaml:"type"`
 				ID     string `yaml:"id"`
+				Source string `yaml:"source"`
 				Target string `yaml:"target"`
 			} `yaml:"mounts,omitempty"`
 		}{}
@@ -118,6 +120,7 @@ func (r *RunItem) UnmarshalJSON(data []byte) error {
 			Mounts  []struct {
 				Type   string `json:"type"`
 				ID     string `json:"id"`
+				Source string `json:"source"`
 				Target string `json:"target"`
 			} `json:"mounts,omitempty"`
 		}{}

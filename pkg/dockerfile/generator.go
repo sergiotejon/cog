@@ -409,6 +409,12 @@ This is the offending line: %s`, command)
 				if mount.Type == "secret" {
 					secretMount := fmt.Sprintf("--mount=type=secret,id=%s,target=%s", mount.ID, mount.Target)
 					mounts = append(mounts, secretMount)
+				} else if mount.Type == "bind" {
+					bindMount := fmt.Sprintf("--mount=type=bind,source=%s,target=%s", mount.Source, mount.Target)
+					mounts = append(mounts, bindMount)
+				} else if mount.Type == "cache" {
+					cacheMount := fmt.Sprintf("--mount=type=cache,target=%s", mount.Target)
+					mounts = append(mounts, cacheMount)
 				}
 			}
 			lines = append(lines, fmt.Sprintf("RUN %s %s", strings.Join(mounts, " "), command))
